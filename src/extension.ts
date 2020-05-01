@@ -7,7 +7,7 @@ export function getDeclaration(): object | undefined
 	var selection = vscode.window.activeTextEditor?.selection;
 	var selected_text : string | undefined;
 
-	var lineat = vscode.window.activeTextEditor?.document.lineAt(selection?.start.line);
+	var lineat = vscode.window.activeTextEditor?.document.lineAt(selection!.start.line);
 	selected_text = lineat?.text;
 
 	var cnt = 1;
@@ -15,24 +15,24 @@ export function getDeclaration(): object | undefined
 	// getting offset of the first indented line
 	while (true)
 	{
-		var offset = vscode.window.activeTextEditor?.document.lineAt(selection?.start.line + cnt);
-		if (offset?.isEmptyOrWhitespace)
+		var get_offset = vscode.window.activeTextEditor?.document.lineAt(selection!.start.line + cnt);
+		if (get_offset?.isEmptyOrWhitespace)
 		{
 			cnt += 1;
 			// check if it really epmty or whitespaces
-			if (offset?.text.length === 0)
+			if (get_offset?.text.length === 0)
 			{
 				isNextEmpty = true;
 			}
 		}
 		else
 		{
-			offset = offset?.firstNonWhitespaceCharacterIndex;
+			var offset = get_offset?.firstNonWhitespaceCharacterIndex as number;
 			break;
 		}
 	}
 
-	var defaultTabSize = vscode.window.activeTextEditor?.options?.tabSize;
+	var defaultTabSize = vscode.window.activeTextEditor?.options?.tabSize as number;
 	var tabDiff = offset - defaultTabSize;
 	// if there is not indentation yet, set the default one
 	if (tabDiff < 0)
@@ -61,7 +61,7 @@ export function getParams(declaration: string): object
 
 			// array of parametres in {name:"name",type:"type"} format
 			params.forEach(function (param: string) {
-				var cur_match = param.match(parseParam).groups;
+				var cur_match = param.match(parseParam)!.groups;
 				if (cur_match !== null)
 				{
 					paramArray.push(cur_match);
@@ -87,12 +87,12 @@ export function getParams(declaration: string): object
 }
 
 
-export function buildDocstring(declarationParts: object, offset: object, editBuilder: object, insert_position: object): string
+export function buildDocstring(declarationParts: any, offset: any, editBuilder: object, insert_position: object): string
 {
 	var default_indent = Array(vscode.window.activeTextEditor?.options?.tabSize).fill(" ").join("");
 
 	// choosing first indent of docstring
-	if (offset.first_offset.length === 0 || !offset.isNextEmpty)
+	if (offset?.first_offset.length === 0 || !offset.isNextEmpty)
 	{
 		var doctring = offset.first_offset + '"""\n';
 	}
@@ -159,9 +159,9 @@ export function activate(context: vscode.ExtensionContext) {
 		if (lang === "python" ) {
 			console.log('in!');
 			
-			var selected = getDeclaration();
+			var selected = getDeclaration() as any;
 
-			if (selected.text === null)
+			if (selected!.text === null)
 			{
 				vscode.window.showErrorMessage('You must provide valid line for docstringing!');
 				return;
