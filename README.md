@@ -14,7 +14,7 @@ This is extension for generating python docstring (google-style for now) for cla
    - OSX: &#8984; + Shift + P
    - Windows: Ctrl + SHift + P
    - Linux: Ctrl + SHift + P
-- Type "pydocstring" (or just start typeng "docstring", should do the trick)
+- Type "pydocstring" (or just start typing "docstring", should do the trick)
 - If you bind it to keyboard shortcut, usage will become much more easy!
 
 ## Known Issues
