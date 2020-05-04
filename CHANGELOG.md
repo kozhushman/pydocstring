@@ -8,3 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.0.4] - 04.05.2020
 ### Fixed
 - Bug that causes command not working
+
+## [0.0.5] - 04.05.2020
+### Fixed
+- Removed hello world message
