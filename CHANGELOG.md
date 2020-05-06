@@ -12,3 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.0.5] - 04.05.2020
 ### Fixed
 - Removed hello world message
+
+## [0.0.6] - 06.05.2020
+### Added
+- Attributes block for classes

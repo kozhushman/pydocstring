@@ -118,13 +118,19 @@ export function buildDocstring(declarationParts: any, offset: any, editBuilder: 
 			doctring += offset.regular_offset + default_indent + declarationParts.return + '\n\n';
 		}
 	}
-	else if (declarationParts.type == 'class' && declarationParts.inheritance != null)
+	else if (declarationParts.type == 'class')
 	{
-		doctring += offset.regular_offset + 'Inheritance:\n';
-		declarationParts.inheritance.forEach(function(param: any){
-			doctring += offset.regular_offset + default_indent + param + ':\n';
-		});
-		doctring += '\n';
+		doctring += offset.regular_offset + 'Attributes:\n';
+		doctring += offset.regular_offset + default_indent + 'attr1 (str): Description of \'attr1\' \n\n';
+
+		if (declarationParts.inheritance != null)
+		{
+			doctring += offset.regular_offset + 'Inheritance:\n';
+			declarationParts.inheritance.forEach(function(param: any){
+				doctring += offset.regular_offset + default_indent + param + ':\n';
+			});
+			doctring += '\n';
+		}
 	}
 
 	// choosing offset of the next string
