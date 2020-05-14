@@ -16,3 +16,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.0.6] - 06.05.2020
 ### Added
 - Attributes block for classes
+
+## [0.0.7] - 13.05.2020
+### Fixed
+- Wrong generate while declaration on multiple lines
+
+### Added
+ - Multiline declaration support (cursor must be on the first line)
+ - Support of __init__ args for class declaration
+

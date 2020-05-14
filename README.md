@@ -17,11 +17,11 @@ This is extension for generating python docstring (google-style for now) for cla
 - Type "pydocstring" (or just start typing "docstring", should do the trick)
 - If you bind it to keyboard shortcut, usage will become much more easy!
 
-## Known Issues
+## Known issues and further develop
 
 - One supported style
 - Dont process decorators
 
 ## Contributions
 
-I am not easy with TypeScript, so critism and advices are welcome, so as proposals to functionality.
+TypeScript not really my language at all, so any contributioans are welcome, so as proposals to functionality.
