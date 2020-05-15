@@ -25,3 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  - Multiline declaration support (cursor must be on the first line)
  - Support of __init__ args for class declaration
 
+ ## [0.0.8] - 15.05.2020
+ ### Fixed
+  - removed 'self' from class args
+

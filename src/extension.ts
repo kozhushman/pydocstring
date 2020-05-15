@@ -164,6 +164,11 @@ export function parseClass(parsedClass: any): object
 	if (parsed?.params != null)
 	{
 		paramArray = parseParams(parsed!.params);
+		paramArray.forEach(function(item, index, object){
+			if (item.variable === 'self') {
+				object.splice(index, 1);
+			  }
+		});
 	}
 	return {"params": paramArray, "return": parsed!.return, "declaration": parsed?.classname, "type": "class", "inheritance": inheritanceArray}
 }

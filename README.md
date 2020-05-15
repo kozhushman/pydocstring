@@ -2,7 +2,7 @@
 
 This is extension for generating python docstring (google-style for now) for classes/methods simply positioning cursor on needed line.
 
-![feature X](./pydocstring.gif)
+![feature X](./pydocstring2.gif)
 
 ## Features
 
