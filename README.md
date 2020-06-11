@@ -2,11 +2,11 @@
 
 This is extension for generating python docstring (google-style for now) for classes/methods simply positioning cursor on needed line.
 
-![feature X](./pydocstring2.gif)
+![feature X](./pydocstring_new.gif)
 
 ## Features
 
- - Generating docstring including parametres, return values and inheritance (for classes)
+ - Generating docstring including parametres, return values, attributes and inheritance (for classes)
 
 ## Usage
  - Move cursor on the needed line
@@ -20,7 +20,8 @@ This is extension for generating python docstring (google-style for now) for cla
 ## Known issues and further develop
 
 - One supported style
-- Dont process decorators
+- Doesn`t process decorators
+- Doesn`t process nested subscriptable types in declaration
 
 ## Contributions
 
