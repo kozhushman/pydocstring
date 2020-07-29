@@ -1,6 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import console = require('console');
 
 export function getMultiline(line: number): [string, number] {
 	var cnt = 1;
@@ -268,6 +269,22 @@ export function getParams(declaration: string, isClass: Boolean): object | null 
 	}
 }
 
+export function buildSmallDocstring(declarationParts: any, offset: any): string {
+	if (offset?.first_offset.length === 0 || !offset.isNextEmpty) {
+		var doctring = offset.first_offset + '""" ';
+	}
+	else {
+		var doctring = offset.regular_offset + '""" ';
+	}
+	doctring += 'Description of ' + declarationParts.declaration;
+	if (offset.first_offset.length == 0) {
+		doctring +=' """\n' + offset.regular_offset;
+	}
+	else {
+		doctring +=' """\n' + offset.first_offset;
+	}
+	return doctring;
+}
 
 export function buildDocstring(declarationParts: any, offset: any, editBuilder: object, insert_position: object): string {
 	var default_indent = Array(vscode.window.activeTextEditor?.options?.tabSize).fill(" ").join("");
@@ -295,16 +312,16 @@ export function buildDocstring(declarationParts: any, offset: any, editBuilder: 
 		}
 	}
 	else if (declarationParts.type == 'class') {
-		doctring += offset.regular_offset + 'Attributes:\n';
 		if (declarationParts.attrs.length != 0) {
+			doctring += offset.regular_offset + 'Attributes:\n';
 			declarationParts.attrs.forEach(function (attr: any) {
 				doctring += offset.regular_offset + default_indent + attr.attr + ' (type):\n';
 			});
 			doctring += '\n';
 		}
-		else {
-			doctring += offset.regular_offset + default_indent + 'attr1 (str): Description of \'attr1\' \n\n';
-		}
+		// else {
+		// 	doctring += offset.regular_offset + default_indent + 'attr1 (str): Description of \'attr1\' \n\n';
+		// }
 
 		if (declarationParts.inheritance.length != 0) {
 			doctring += offset.regular_offset + 'Inheritance:\n';
@@ -330,6 +347,27 @@ export function buildDocstring(declarationParts: any, offset: any, editBuilder: 
 	else {
 		doctring += offset.regular_offset + '"""\n' + offset.first_offset;
 	}
+
+	var lenCheck = doctring.replace(" ", "");
+	console.log(lenCheck)
+	console.log(lenCheck.length)
+	if (declarationParts.type == 'class'){
+		if (lenCheck.length < 90 && 
+			declarationParts.params.length == 0 && 
+			declarationParts.inheritance.length == 0 &&
+			declarationParts.attrs.length == 0){
+			doctring = buildSmallDocstring(declarationParts, offset);
+		}
+	}
+	else {
+		if (lenCheck.length < 90 && 
+			declarationParts.params.length == 0 && 
+			declarationParts.return == ""){
+			doctring = buildSmallDocstring(declarationParts, offset);
+		}
+	}
+	
+
 	return doctring;
 }
 

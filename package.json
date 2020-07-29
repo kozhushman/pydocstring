@@ -2,7 +2,7 @@
 	"name": "pydocstring",
 	"displayName": "python docstrings",
 	"description": "generate python docstrings for classes and methods",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"publisher": "kopub",
 	"license": "SEE LICENSE IN LICENSE",
 	"engines": {

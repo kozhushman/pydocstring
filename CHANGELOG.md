@@ -36,3 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Parsing attributes inside __init__ and adding them to class declaration
+
+## [0.1.1] - 29.07.2020
+### Fixed
+- Issue #6 (One-line docstring should fit on one line with quotes.)
